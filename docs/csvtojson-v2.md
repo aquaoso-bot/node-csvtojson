@@ -58,16 +58,20 @@ csv()
   return Promise((resolve,reject)=>{
     // process the json line in asynchronous.
   })
-},onError, onComplete)
+}, onError, onComplete)
 
 // sync process
 csv()
 .fromFile(csvFilePath)
 .subscribe((json,lineNumber)=>{
     // process the json line in synchronouse.
-},onError, onComplete)
+}, onError, onComplete)
 
 ```
+
+Note: `onError` and `onComplete` callbacks are required. Without the callbacks, the CSV process will
+execute as a promise that resolves to the entire JSON array, building it up in memory. This may cause large
+CSV files to run out of memory.
 
 ## Built-in TypeScript support
 
